@@ -16,14 +16,18 @@ import DM_File_Handler.DMHandler;
 
 public class Console {
     static DMHandler arquivo;
+    private static Conceito mainConcept;
+
+
     public static void main(String[] args) {
 
 
 
 
-        System.out.println("DataSet program version v0.1");
+        System.out.println("DataSet program version v0.1.1");
         while (!carregarDataSet());
         carregaConcept();
+        System.out.println(mainConcept.getConceitoValues());
 
 
     }
@@ -122,17 +126,18 @@ public class Console {
 
             }
             if(verification){
-                if(!atributeValues.isEmpty())atributos.add(new Attribute(atribConceito,atributeValues));
+                if(!atributeValues.isEmpty())atributos.add(new Attribute(atribConceito, atributeValues));
             }
 
             System.out.println("Digite o Campo a ser analisado :");
             verification=false;
             atributeValues.clear();
         }
+        System.out.println("----------Conceito------------");
         for (Attribute attribute : atributos) {
             System.out.println(attribute);
         }
-        Conceito c1;
-        c1 = new Conceito(atributos,arquivo.getInstances());
+        System.out.println("------------------------------");
+        mainConcept = new Conceito(atributos,arquivo.getInstances());
     }
 }
